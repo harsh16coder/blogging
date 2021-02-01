@@ -9,7 +9,7 @@ class Article(models.Model):
     body = models.TextField()
     date = models.DateTimeField(auto_now_add = True)
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,)
-    likes = models.ManyToManyField(get_user_model(), related_name='blog_posts')
+    likes = models.ManyToManyField(get_user_model(), related_name='article_articles')
 
     def __str__(self):
         return self.title

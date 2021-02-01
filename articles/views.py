@@ -1,10 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView,DetailView
 from django.views.generic.edit import UpdateView,DeleteView,CreateView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.core.exceptions import PermissionDenied
 from .models import Article
+from  django.http import HttpResponseRedirect
+
+def LikeView(request, pk):
+    article = get_object_or_404(Article, request.POST.get('article_id'))
+    article.likes.add(request.user)
+    return HttpResponseRedirect(reverse('article_detail', args=[str(pk)]))
 
 class ArticleListView(LoginRequiredMixin,ListView):
     model = Article

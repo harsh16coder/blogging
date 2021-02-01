@@ -11,6 +11,16 @@
 
     <p>
         <a href="{% url 'article_edit' article.pk %}">Edit</a> |
-        <a href="{% url 'article_delete' article.pk %}">Delete</a></p>
+    {    <a href="{% url 'article_delete' article.pk %}">Delete</a>|
+    <form action="{% url 'article_like' post.pk %}"
+    method="POST">
+    {% csrf_token %}{
+    <button type="submit" , name="article_id", value="{{article_id}}", class="btn btn-primary btn-sm">Like</button>
+</form></p>
         <p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
+    <br/><br/>
+    <hr>
+    <br/>
+   
+    
 {% endblock content %}
