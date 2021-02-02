@@ -16,4 +16,6 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return reverse('article_detail',args=[str(self.id)])
+    def number_of_likes(self):
+    	return self.likes.count()
 

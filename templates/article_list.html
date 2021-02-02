@@ -4,8 +4,9 @@
 
 {% block title %}Articles{% endblock title %}
 {% block content %}
-
+    
     {% for article in object_list %}
+    <a href="{% url 'article_detail' article.pk %}">
         <br />
         <div class="card">
             <div class="card-header">
@@ -23,5 +24,6 @@
 
         </div>
         <br />
+    </a>
     {% endfor %}
 {% endblock content %}

@@ -9,18 +9,28 @@
         <p>{{ object.body }}</p>
     </div>
 
-    <p>
-        <a href="{% url 'article_edit' article.pk %}">Edit</a> |
-    {    <a href="{% url 'article_delete' article.pk %}">Delete</a>|
-    <form action="{% url 'article_like' post.pk %}"
-    method="POST">
-    {% csrf_token %}{
-    <button type="submit" , name="article_id", value="{{article_id}}", class="btn btn-primary btn-sm">Like</button>
-</form></p>
-        <p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
+    
+       
+
+    <!-- LIKES -->
+{% if user.is_authenticated %}
+  <form action="{% url 'article_like' article.pk %}" method="POST">
+    {% csrf_token %}
+
+    {% if post_is_liked %}
+    <button type="submit" name="article_id" value="{{article.id}}" class="btn btn-info">Unlike</button>
+    {% else %}
+    <button type="submit" name="article_id" value="{{article.id}}" class="btn btn-info">Like</button>
+    {% endif %}
+  </form>
+{% else %}
+  <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this article!</a><br>
+{% endif %}
+<strong class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
+
+ <p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
     <br/><br/>
     <hr>
     <br/>
-   
     
 {% endblock content %}
