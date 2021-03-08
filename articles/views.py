@@ -39,7 +39,7 @@ class ArticleDetailView(LoginRequiredMixin,DetailView):
 
 class ArticleUpdateView(LoginRequiredMixin,UpdateView):
     model = Article
-    fields = ('title','body',)
+    fields = ('title','body','category',)
     template_name = 'article_edit.html'
     login_url = 'login'
 
