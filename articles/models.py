@@ -27,4 +27,3 @@ class Article(models.Model):
         return reverse('article_detail',args=[str(self.id)])
     def number_of_likes(self):
     	return self.likes.count()
-
